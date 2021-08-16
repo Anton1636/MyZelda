@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class CameraMovment : MonoBehaviour
 {
-    private Transform target;
-    public float smothing;
-    public Vector2 maxPos;
-    public Vector2 minPos;
+    public Transform target;
+    public float smoothing;
+    public Vector2 maxPos, minPos;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +19,13 @@ public class CameraMovment : MonoBehaviour
     {
         if(transform.position != target.position)
         {
-            Vector3 targetPos = new Vector3(target.position.x, target.position.y, transform.position.z);
+            Vector3 targePos = new Vector3(target.position.x, target.position.y, transform.position.z);
 
-            targetPos.x = Mathf.Clamp(targetPos.x, minPos.x, maxPos.x);
-            targetPos.y = Mathf.Clamp(targetPos.y, minPos.x, maxPos.y);
+            targePos.x = Mathf.Clamp(targePos.x, minPos.x, maxPos.x);
 
-            transform.position = Vector3.Lerp(transform.position, targetPos, smothing);
+            targePos.y = Mathf.Clamp(targePos.y, minPos.y, maxPos.y);
+
+            transform.position = Vector3.Lerp(transform.position, targePos, smoothing);
 
 
         }

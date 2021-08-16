@@ -6,9 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D myRigidbody;
-    private Vector3 chenge;
+    private Vector3 change;
     private Animator animator;
-
 
     // Start is called before the first frame update
     void Start()
@@ -20,21 +19,21 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        chenge = Vector3.zero;
-        chenge.x = Input.GetAxisRaw("Horizontal");
-        chenge.y = Input.GetAxisRaw("Vertical");
+        change = Vector3.zero;
+        change.x = Input.GetAxisRaw("Horizontal");
+        change.y = Input.GetAxisRaw("Vertical");
 
         UpdateAnimationAndMove();
     }
 
     void UpdateAnimationAndMove()
     {
-        if (chenge != Vector3.zero)
+        if (change != Vector3.zero)
         {
             MoveCharacter();
 
-            animator.SetFloat("moveX", chenge.x);
-            animator.SetFloat("moveY", chenge.x);
+            animator.SetFloat("moveX", change.x);
+            animator.SetFloat("moveY", change.y);
             animator.SetBool("moving", true);
         }
         else
@@ -43,8 +42,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     void MoveCharacter()
     {
-        myRigidbody.MovePosition(transform.position + chenge * speed * Time.deltaTime);
+        myRigidbody.MovePosition(transform.position + change * speed * Time.deltaTime);
     }
 }
